@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/init.css" />
     <link rel="stylesheet" href="../css/shop.css" />
+    <script src="../js/darkMode.js" defer></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -244,46 +245,6 @@
         </div>
       </div>
     </main>
-
-    <script>
-      //select all products
-      document.querySelectorAll(".product-card").forEach((card) => {
-        //buttons
-        const minusBtn = card.querySelector("button:nth-of-type(1)");
-        const plusBtn = card.querySelector("button:nth-of-type(2)");
-        const input = card.querySelector("input");
-
-        //events to add or decrease quantity
-        minusBtn.addEventListener("click", () => {
-          let value = parseInt(input.value) || 0;
-          if (value > 1) {
-            input.value = value - 1;
-          }
-        });
-
-        plusBtn.addEventListener("click", () => {
-          let value = parseInt(input.value) || 0;
-          input.value = value + 1;
-        });
-      });
-
-      //dark mode toggle
-      const toggleButton = document.getElementById("toggleDarkMode");
-
-      toggleButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-
-        //change icon based on mode
-        const icon = toggleButton.querySelector("i");
-        if (document.body.classList.contains("dark-mode")) {
-          icon.classList.remove("fa-moon");
-          icon.classList.add("fa-sun");
-        } else {
-          icon.classList.remove("fa-sun");
-          icon.classList.add("fa-moon");
-        }
-      });
-    </script>
 
     <!-- Footer -->
     <footer>

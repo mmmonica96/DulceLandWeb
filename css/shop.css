@@ -103,8 +103,8 @@ body {
 
 /* dark mode */
 body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
 }
 
 body.dark-mode .product-card {
