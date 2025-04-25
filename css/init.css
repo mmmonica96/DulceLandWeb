@@ -8,6 +8,37 @@ body {
   flex-direction: column;
 }
 
+  /*offer text in motion */
+  .offer-text-container {
+    width: 100%;
+    height: 40px;
+    background-color: #d7b6db;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .offer-text-container span {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    animation: scroll-text 30s linear infinite;
+  }
+  
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
 /* Header / Banner */
 .banner img {
   width: 100%;
@@ -122,6 +153,7 @@ footer {
 .rrss a:hover i {
   opacity: 0.6;
 }
+
 /*featured-products*/
 .featured-products {
   text-align: center;
