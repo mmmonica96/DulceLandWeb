@@ -1,15 +1,15 @@
 <?php
 include 'db.php';
 
-// Crear conexión
+// Create connection
 $conn = new mysqli("localhost", "root", "", "dulceland");
 
-// Verificar conexión
+// Verify connection
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Obtener datos del formulario
+// Get form data
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
@@ -71,17 +71,13 @@ if (isset($_POST['register'])) {
 
     $stmt->close();
 }
-
-
-
-
-// CONTACT
+//contact
 if (isset($_POST['contact'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $message = $_POST['message'];
 
-    // Verificar que existe tabla contact antes de insertar
+    //verify that a contact table exists before insertion
     $stmt = $conn->prepare("INSERT INTO contact (name, email, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $message);
 
