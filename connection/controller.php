@@ -1,12 +1,27 @@
 <?php
 ob_start();
 include 'db.php';
+<<<<<<< HEAD
 $conn = new mysqli("localhost", "root", "", "dulceland");
 
+=======
+
+// Create connection
+$conn = new mysqli("localhost", "root", "", "dulceland");
+
+// Verify connection
+>>>>>>> origin/monica
 if ($conn->connect_error) {
     die();
 }
 
+<<<<<<< HEAD
+=======
+// Get form data
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+
+>>>>>>> origin/monica
 // LOGIN
 if (isset($_POST['login'])) {
     $email = $_POST['email'] ?? '';
@@ -80,8 +95,12 @@ if (isset($_POST['register'])) {
         exit();
     }
 }
+<<<<<<< HEAD
 
 // CONTACT
+=======
+//contact
+>>>>>>> origin/monica
 if (isset($_POST['contact'])) {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
@@ -91,6 +110,10 @@ if (isset($_POST['contact'])) {
         die("All fields are required for contact.");
     }
 
+<<<<<<< HEAD
+=======
+    //verify that a contact table exists before insertion
+>>>>>>> origin/monica
     $stmt = $conn->prepare("INSERT INTO contact (name, email, message) VALUES (?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed (contact): (" . $conn->errno . ") " . $conn->error);
@@ -107,8 +130,12 @@ if (isset($_POST['contact'])) {
     }
 }
 
+<<<<<<< HEAD
 // Close connection
 $conn->close();
 ob_end_flush(); // Flush output buffer
 ?>
 
+=======
+?>
+>>>>>>> origin/monica
