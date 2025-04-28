@@ -199,7 +199,6 @@ footer {
 .whyChoose {
   text-align: center;
   padding: 2rem;
-  background-color: #fff0f6;
 }
 
 .whyChoose h2 {
@@ -231,13 +230,13 @@ footer {
 
 /* horary */
 .horary {
-  background-color: #f0f4f8;
   padding: 2rem;
   text-align: center;
 }
 
 .timeTable {
   background-color: #ffffff;
+  color: #000;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
