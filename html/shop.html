@@ -9,12 +9,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <script src="../js/darkMode.js" defer></script>
+    <script src="../js/modal.js" defer></script>
     <title>Tienda - Pastelería DulceLand</title>
   </head>
   <body>
     <!--title of the offer -->
     <div class="offer-text-container">
-      <span>¡Oferta en todos nuestros productos sin gluten!</span>
+      <span
+        >¡Oferta en todos nuestros productos sin gluten! ¡Haz tu pedido!</span
+      >
     </div>
 
     <!-- Banner -->
@@ -49,7 +53,7 @@
     <main class="store-container">
       <!-- product 1 -->
       <div class="product-card">
-        <img src="../img/red.png" alt="Red Velvet" />
+        <img src="../img/red.png" alt="red" />
         <h3>Porción Red Velvet</h3>
         <p>Sin gluten</p>
         <div class="price">
@@ -65,7 +69,7 @@
 
       <!-- product 2 -->
       <div class="product-card">
-        <img src="../img/red2.jpg" alt="Chocolate Cake" />
+        <img src="../img/red2.jpg" alt="redVelvetSinGluten" />
         <h3>Red Velvet</h3>
         <p>Bizcocho de red velvet y mousse de queso</p>
         <div class="price">
@@ -81,7 +85,7 @@
 
       <!-- product 3 -->
       <div class="product-card">
-        <img src="../img/tejas.jpg" alt="Tejas" />
+        <img src="../img/tejas.jpg" alt="tejas" />
         <h3>Tejas</h3>
         <p>Tejas artesanas de almendras</p>
         <div class="price">
@@ -97,7 +101,7 @@
 
       <!-- product 4 -->
       <div class="product-card">
-        <img src="../img/tartaQuesoSinjpg.jpg" alt="Tarta queso" />
+        <img src="../img/tartaQuesoSin.jpg" alt="tartaQuesoSinGluten" />
         <p>Tarta de queso sin gluten</p>
         <div class="price">
           <strong><del>5,90€</del>4,50 €</strong>
@@ -112,7 +116,10 @@
 
       <!-- product 5 -->
       <div class="product-card">
-        <img src="../img/TresChocolateSin.jpg" alt="Tejas" />
+        <img
+          src="../img/TresChocolateSin.jpg"
+          alt="tartaTresChocolatesSinGluten"
+        />
         <h3>Tarta de queso de tres chocolates</h3>
         <p>Sin gluten</p>
         <div class="price">
@@ -245,46 +252,6 @@
       </div>
     </main>
 
-    <script>
-      //select all products
-      document.querySelectorAll(".product-card").forEach((card) => {
-        //buttons
-        const minusBtn = card.querySelector("button:nth-of-type(1)");
-        const plusBtn = card.querySelector("button:nth-of-type(2)");
-        const input = card.querySelector("input");
-
-        //events to add or decrease quantity
-        minusBtn.addEventListener("click", () => {
-          let value = parseInt(input.value) || 0;
-          if (value > 1) {
-            input.value = value - 1;
-          }
-        });
-
-        plusBtn.addEventListener("click", () => {
-          let value = parseInt(input.value) || 0;
-          input.value = value + 1;
-        });
-      });
-
-      //dark mode toggle
-      const toggleButton = document.getElementById("toggleDarkMode");
-
-      toggleButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-
-        //change icon based on mode
-        const icon = toggleButton.querySelector("i");
-        if (document.body.classList.contains("dark-mode")) {
-          icon.classList.remove("fa-moon");
-          icon.classList.add("fa-sun");
-        } else {
-          icon.classList.remove("fa-sun");
-          icon.classList.add("fa-moon");
-        }
-      });
-    </script>
-
     <!-- Footer -->
     <footer>
       <p>&copy; 2025 Pastelería DulceLand - Todos los derechos reservados</p>
@@ -297,5 +264,25 @@
         ></a>
       </div>
     </footer>
+    <!--dialog: additional window with more photos -->
+    <dialog id="productDialog">
+      <form method="dialog">
+        <button class="close-btn">&times;</button>
+      </form>
+      <div class="dialog-content">
+        <div class="carousel">
+          <img src="" alt="Imagen del producto" class="carousel-img" />
+          <div class="carousel-controls">
+            <button id="prev">&#10094;</button>
+            <button id="next">&#10095;</button>
+          </div>
+        </div>
+        <!--title and product -->
+        <div class="modal-info">
+          <h3 id="dialogTitle">Título</h3>
+          <p id="dialogDescription">Descripción del producto</p>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>
