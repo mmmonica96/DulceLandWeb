@@ -1,33 +1,45 @@
 <?php
+ob_start();
 include 'db.php';
-
-// Create connection
 $conn = new mysqli("localhost", "root", "", "dulceland");
 
-// Verify connection
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    die();
 }
-
-// Get form data
-$email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
 
 // LOGIN
 if (isset($_POST['login'])) {
-    $sql = "SELECT * FROM customers WHERE email = ? AND password = ?";
-    $stmt = $conn->prepare($sql);
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    if (empty($email) || empty($password)) {
+        die("Email and Password are required.");
+    }
+
+    // Debug: Ver qué email y password se están enviando
+    echo "Email enviado: '$email'<br>";
+    echo "Password enviado: '$password'<br>";
+
+    $stmt = $conn->prepare("SELECT idcustomers FROM customers WHERE email = ? AND password = ?");
+    if (!$stmt) {
+        die("Prepare failed (login): (" . $conn->errno . ") " . $conn->error);
+    }
+
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
+    if ($result && $result->num_rows > 0) {
+        echo "Usuario encontrado. Redireccionando...";
         header("Location: ../html/init.html");
         exit();
     } else {
-        echo "Usuario o contraseña incorrectos.";
+        echo "Usuario NO encontrado.";
+        exit();
     }
 }
+
+
 
 // REGISTER
 if (isset($_POST['register'])) {
@@ -36,13 +48,12 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'] ?? '';
 
     if (empty($email) || empty($name) || empty($password)) {
-        die("One or more required fields are empty.");
+        die("Name, Email and Password are required.");
     }
 
-    // Prepare check query
     $check = $conn->prepare("SELECT idcustomers FROM customers WHERE email = ?");
     if (!$check) {
-        die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+        die("Prepare failed (register check): (" . $conn->errno . ") " . $conn->error);
     }
 
     $check->bind_param("s", $email);
@@ -54,10 +65,9 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    // Insert new customer
     $stmt = $conn->prepare("INSERT INTO customers (name, email, password) VALUES (?, ?, ?)");
     if (!$stmt) {
-        die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+        die("Prepare failed (register insert): (" . $conn->errno . ") " . $conn->error);
     }
 
     $stmt->bind_param("sss", $name, $email, $password);
@@ -67,27 +77,37 @@ if (isset($_POST['register'])) {
         exit();
     } else {
         echo "User not registered. Error: " . $conn->error;
+        exit();
+    }
+}
+
+// CONTACT
+if (isset($_POST['contact'])) {
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $message = $_POST['message'] ?? '';
+
+    if (empty($name) || empty($email) || empty($message)) {
+        die("All fields are required for contact.");
     }
 
-    $stmt->close();
-}
-//contact
-if (isset($_POST['contact'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-
-    //verify that a contact table exists before insertion
     $stmt = $conn->prepare("INSERT INTO contact (name, email, message) VALUES (?, ?, ?)");
+    if (!$stmt) {
+        die("Prepare failed (contact): (" . $conn->errno . ") " . $conn->error);
+    }
+
     $stmt->bind_param("sss", $name, $email, $message);
 
     if ($stmt->execute()) {
         header("Location: ../html/init.html");
+        exit();
     } else {
-        echo "Error al enviar el mensaje: " . $conn->error;
+        echo "Error sending message: " . $conn->error;
+        exit();
     }
-
-    $stmt->close();
 }
 
+// Close connection
+$conn->close();
+ob_end_flush(); // Flush output buffer
 ?>
