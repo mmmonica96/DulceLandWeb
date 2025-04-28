@@ -1,72 +1,87 @@
 <?php
 include 'db.php';
 
-//login
-//create a connection to the database
+// Crear conexión
 $conn = new mysqli("localhost", "root", "", "dulceland");
 
-//verify connection
+// Verificar conexión
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-//get the form data
+// Obtener datos del formulario
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
-//prepare query to avoid SQL injections
-$sql = "SELECT * FROM customers WHERE name = ? AND email = ? AND password = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $name, $email, $password);
-$stmt->execute();
-$result = $stmt->get_result();
+// LOGIN
+if (isset($_POST['login'])) {
+    $sql = "SELECT * FROM customers WHERE email = ? AND password = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-//check if the user exists
-if ($result->num_rows > 0) {
-    header("Location: ../html/init.html");
-    exit();
-} else {
-    echo " Usuario o contraseña incorrectos";
+    if ($result->num_rows > 0) {
+        header("Location: ../html/init.html");
+        exit();
+    } else {
+        echo "Usuario o contraseña incorrectos.";
+    }
 }
 
-//REGISTER
-if (isset($_POST['customers'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+// REGISTER
+if (isset($_POST['register'])) {
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    // Verificamos si ya existe el correo
-    $check = $conn->prepare("SELECT idcustomers FROM user WHERE email = ?");
+    if (empty($email) || empty($name) || empty($password)) {
+        die("One or more required fields are empty.");
+    }
+
+    // Prepare check query
+    $check = $conn->prepare("SELECT idcustomers FROM customers WHERE email = ?");
+    if (!$check) {
+        die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+    }
+
     $check->bind_param("s", $email);
     $check->execute();
     $check->store_result();
 
     if ($check->num_rows > 0) {
-        echo "El usuario ya está registrado.";
+        echo "The user is already registered.";
         exit();
     }
 
-    // Insertar nuevo usuario
-    $stmt = $conn->prepare("INSERT INTO user (name, email, password) VALUES (?, ?, ?)");
+    // Insert new customer
+    $stmt = $conn->prepare("INSERT INTO customers (name, email, password) VALUES (?, ?, ?)");
+    if (!$stmt) {
+        die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+    }
+
     $stmt->bind_param("sss", $name, $email, $password);
 
     if ($stmt->execute()) {
         header("Location: ../html/init.html");
-        exit;
+        exit();
     } else {
-        echo "Usuario no registrado. Error: " . $conn->error;
+        echo "User not registered. Error: " . $conn->error;
     }
 
     $stmt->close();
 }
 
-//contact
+
+
+
+// CONTACT
 if (isset($_POST['contact'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $message = $_POST['message'];
 
-    //insertar menssaje 
+    // Verificar que existe tabla contact antes de insertar
     $stmt = $conn->prepare("INSERT INTO contact (name, email, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $message);
 
@@ -78,4 +93,5 @@ if (isset($_POST['contact'])) {
 
     $stmt->close();
 }
+
 ?>
