@@ -1,3 +1,4 @@
+/* Estilo general del sitio */
 body {
   font-family: "Times New Roman", Times, serif;
   margin: 0;
@@ -70,7 +71,7 @@ body {
   color: white;
 }
 
-/*offer text in motion */
+/* Textos de oferta en movimiento */
 .offer-text-container {
   width: 100%;
   height: 40px;
@@ -92,36 +93,36 @@ body {
   animation: scroll-text 30s linear infinite;
 }
 
-/* dark mode */
+/* Modo oscuro */
 body.dark-mode {
   background-color: #121212 !important;
   color: #fffcfc !important;
 }
 
-/*product cards in dark mode*/
+/* Product cards in dark mode */
 body.dark-mode .product-card {
   background-color: #1e1e1e;
   border-color: #333;
 }
 
-/*titles and prices in dark mode*/
+/* Titles and prices in dark mode */
 body.dark-mode .store-header h2,
 body.dark-mode .price {
   color: #ff80ab;
 }
 
-/*purchase buttons in dark mode*/
+/* Purchase buttons in dark mode */
 body.dark-mode .buy {
   background-color: #e91e63;
 }
 
-/*action buttons*/
+/* Action buttons */
 body.dark-mode .actions button {
   background-color: #333;
   color: #fff;
 }
 
-/*text of the offer*/
+/* Text of the offer */
 body.dark-mode .offer-text-container {
   background-color: #444;
   color: #160c0c;
@@ -188,6 +189,43 @@ body.dark-mode .carousel-controls button {
 body.dark-mode .carousel-controls button:hover {
   background-color: #ff80ab;
 }
+
+/* Estilos para la tabla de pedidos en modo oscuro */
+body.dark-mode #ordersTable {
+  background-color: #333; /* Fondo oscuro para la tabla */
+  color: #fff; /* Color de texto blanco para contraste */
+}
+
+body.dark-mode #ordersTable th,
+body.dark-mode #ordersTable td {
+  border: 1px solid #444; /* Borde gris oscuro para las celdas */
+  padding: 10px; /* Espaciado interno en las celdas */
+}
+
+body.dark-mode #ordersTable th {
+  background-color: #444; /* Fondo oscuro para los encabezados */
+  color: #ff80ab; /* Color de texto de los encabezados */
+}
+
+body.dark-mode #ordersTable td {
+  background-color: #1e1e1e; /* Fondo de las celdas en modo oscuro */
+}
+
+/* Estilo para los botones dentro de la tabla */
+body.dark-mode #ordersTable button {
+  background-color: #e91e63; /* Fondo rosa para los botones */
+  color: white; /* Texto blanco en los botones */
+  border: none; /* Sin borde */
+  padding: 5px 10px; /* Relleno dentro del botón */
+  cursor: pointer; /* Puntero de mano */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición para el hover */
+}
+
+body.dark-mode #ordersTable button:hover {
+  background-color: #ff80ab; /* Color del fondo cuando el ratón pasa sobre el botón */
+}
+
 @keyframes scroll-text {
   0% {
     transform: translateX(0%);
