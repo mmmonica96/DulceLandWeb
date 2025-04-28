@@ -92,6 +92,102 @@ body {
   animation: scroll-text 30s linear infinite;
 }
 
+/* dark mode */
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #fffcfc !important;
+}
+
+/*product cards in dark mode*/
+body.dark-mode .product-card {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+/*titles and prices in dark mode*/
+body.dark-mode .store-header h2,
+body.dark-mode .price {
+  color: #ff80ab;
+}
+
+/*purchase buttons in dark mode*/
+body.dark-mode .buy {
+  background-color: #e91e63;
+}
+
+/*action buttons*/
+body.dark-mode .actions button {
+  background-color: #333;
+  color: #fff;
+}
+
+/*text of the offer*/
+body.dark-mode .offer-text-container {
+  background-color: #444;
+  color: #160c0c;
+}
+
+body.dark-mode .menu {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+body.dark-mode .menu a:hover {
+  color: #ff80ab;
+}
+
+body.dark-mode footer {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode .rrss a {
+  color: #fff;
+}
+
+body.dark-mode .dark-icon {
+  color: #fff;
+}
+
+body.dark-mode input,
+body.dark-mode button {
+  border: 1px solid #333;
+}
+
+body.dark-mode .coming-soon {
+  background-color: #ff80ab;
+  color: #fff;
+}
+
+body.dark-mode dialog {
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .carousel-img {
+  border: 2px solid #fff;
+}
+
+body.dark-mode .carousel-controls button {
+  background-color: #e91e63;
+  color: white;
+}
+
+body.dark-mode .carousel-controls button:hover {
+  background-color: #ff80ab;
+}
 @keyframes scroll-text {
   0% {
     transform: translateX(0%);
@@ -99,113 +195,4 @@ body {
   100% {
     transform: translateX(-100%);
   }
-}
-
-/* dark mode */
-body.dark-mode {
-  background-color: #121212 !important;
-  color: #fffcfc !important;
-}
-
-body.dark-mode .product-card {
-  background-color: #1e1e1e;
-  border-color: #333;
-}
-
-body.dark-mode .store-header h2,
-body.dark-mode .price {
-  color: #ff80ab;
-}
-
-body.dark-mode .buy {
-  background-color: #e91e63;
-}
-
-body.dark-mode .actions button {
-  background-color: #333;
-  color: #fff;
-}
-
-body.dark-mode .offer-text-container {
-  background-color: #444;
-  color: #160c0c;
-}
-
-body.dark-mode .menu,
-body.dark-mode footer {
-  background-color: #d7d0d0;
-}
-
-/*icon to toggle dark mode*/
-.dark-icon {
-  font-size: 24px;
-  color: #000000;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-body.dark-mode .dark-icon {
-  color: black;
-}
-/*coming soon label*/
-.coming-soon {
-  background-color: #ffa500;
-  color: white;
-  font-size: 10px;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-/*table for additional product information*/
-dialog {
-  border: none;
-  border-radius: 10px;
-  padding: 1rem;
-  max-width: 600px;
-  width: 80%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  cursor: pointer;
-}
-/*carousel of images*/
-.dialog-content .carousel-img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.carousel-controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 0.5rem;
-}
-
-.carousel-controls button {
-  background-color: #f06292;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.carousel-controls button:hover {
-  background-color: #e91e63;
 }
