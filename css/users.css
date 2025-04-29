@@ -26,7 +26,7 @@ body {
 .menu .dark-icon {
   margin-right: 15px;
 }
-
+/* logout */
 .menu .logout {
   font-size: 16px;
   color: #333;
@@ -41,7 +41,7 @@ body {
   background-color: #f07c6d;
 }
 
-/* Main Content */
+/*main Content */
 .main-content {
   padding: 20px;
   max-width: 1200px;

@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 /* General */
 body {
   margin: 0;
@@ -6,6 +10,7 @@ body {
   background-color: #f0f4f8;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 /*offer text in motion */
@@ -28,15 +33,6 @@ body {
   font-size: 18px;
   font-weight: bold;
   animation: scroll-text 30s linear infinite;
-}
-
-@keyframes scroll-text {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
 }
 
 /* Header / Banner */
@@ -138,7 +134,9 @@ footer {
   text-align: center;
   margin-top: auto;
 }
-
+.main-content {
+  flex: 1;
+}
 .rrss a {
   text-decoration: none;
   color: #333;
@@ -245,4 +243,13 @@ footer {
 
 .timeTable p {
   margin: 0.5rem 0;
+}
+
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
