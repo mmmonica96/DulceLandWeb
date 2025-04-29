@@ -3,15 +3,21 @@ ob_start();
 include 'db.php';
 $conn = new mysqli("localhost", "root", "", "dulceland");
 
+<<<<<<< HEAD
 // Verify connection
+=======
+>>>>>>> origin/monica
 if ($conn->connect_error) {
     die();
 }
 
+<<<<<<< HEAD
 // Get form data
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
+=======
+>>>>>>> origin/monica
 // LOGIN
 if (isset($_POST['login'])) {
     $email = $_POST['email'] ?? '';
@@ -113,5 +119,9 @@ if (isset($_POST['contact'])) {
 // Close connection
 $conn->close();
 ob_end_flush(); // Flush output buffer
+<<<<<<< HEAD
 
 ?>
+=======
+?>
+>>>>>>> origin/monica
