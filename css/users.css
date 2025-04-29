@@ -100,35 +100,6 @@ button:hover {
   background-color: #f07c6d;
 }
 
-/* Footer */
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  background-color: #d3cce3;
-  color: #333;
-  font-size: 14px;
-  text-align: center;
-  margin-top: auto;
-}
-
-.rrss a {
-  text-decoration: none;
-  color: #333;
-}
-
-.rrss i {
-  font-size: 20px;
-  margin-left: 8px;
-  transition: opacity 0.3s ease;
-}
-
-.rrss a:hover i {
-  opacity: 0.6;
-}
-
 /*responsive */
 @media (max-width: 768px) {
   .navegacion ul {
