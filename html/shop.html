@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/init.css" />
-    <link rel="stylesheet" href="../css/shop.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <script src="../js/darkMode.js" defer></script>
-    <script src="../js/modal.js" defer></script>
-    <title>Tienda - Pastelería DulceLand</title>
-  </head>
-  <body>
-    <!--title of the offer -->
-    <div class="offer-text-container">
-      <span
-        >¡Oferta en todos nuestros productos sin gluten! ¡Haz tu pedido!</span
-      >
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/init.css" />
+  <link rel="stylesheet" href="../css/shop.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="../js/darkMode.js" defer></script>
+  <script src="../js/shop.js" defer></script> <!-- 🔥 NUEVO SCRIPT -->
+  <title>Tienda - Pastelería DulceLand</title>
+</head>
 
-    <!-- Banner -->
-    <header class="banner">
-      <img src="../img/banner.png" alt="Pastelería DulceLand" />
-    </header>
+<body>
+  <!-- Banner -->
+  <header class="banner">
+    <img src="../img/banner.png" alt="Pastelería DulceLand" />
+  </header>
 
-    <!-- Navbar -->
-    <div class="menu">
-      <nav class="navegacion">
-        <ul>
-          <li><a href="init.html">Inicio</a></li>
-          <li><a href="shop.html">Tienda</a></li>
-          <li><a href="login.html">Inicio de sesión</a></li>
-          <li><a href="register.html">Registro</a></li>
-          <li><a href="formContact.html">Contacto</a></li>
-          <li><a href="map.html">¿Dónde encontrarnos?</a></li>
-          <li><a href="faq.html">Preguntas frecuentes</a></li>
+  <!-- Navbar -->
+  <div class="menu">
+    <nav class="navegacion">
+      <ul>
+        <li><a href="init.html">Inicio</a></li>
+        <li><a href="shop.html">Tienda</a></li>
+        <li><a href="login.html">Inicio de sesión</a></li>
+        <li><a href="register.html">Registro</a></li>
+        <li><a href="formContact.html">Contacto</a></li>
+        <li><a href="map.html">¿Dónde encontrarnos?</a></li>
+        <li><a href="faq.html">Preguntas frecuentes</a></li>
+        <li style="position: relative;">
+          <a href="javascript:void(0);" id="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </li>
+        <li>
           <span id="toggleDarkMode" class="dark-icon">
             <i class="fas fa-moon"></i>
           </span>
-        </ul>
-      </nav>
-    </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+ <!-- 🔥 Contenedor principal de la tienda -->
+ <div class="contenido" style="position: relative;">
 
     <!--section title -->
     <section class="store-header">
@@ -102,6 +103,7 @@
       <!-- product 4 -->
       <div class="product-card">
         <img src="../img/tartaQuesoSin.jpg" alt="tartaQuesoSinGluten" />
+        <h3>Tarta de queso</h3>
         <p>Tarta de queso sin gluten</p>
         <div class="price">
           <strong><del>5,90€</del>4,50 €</strong>
@@ -251,6 +253,23 @@
         </div>
       </div>
     </main>
+
+    
+    <!-- 🛒 Carrito dentro del contenido -->
+    <div id="cart-container" class="cart-container hidden">
+      <h2>Carrito</h2>
+      <div id="cart-items"></div>
+      <div id="cart-total">
+        Total: <span id="total-amount">0.00€</span>
+      </div>
+      <div class="cart-buttons">
+        <button onclick="checkoutCart()">Comprar</button>
+        <button onclick="clearCart()">Vaciar Cesta</button>
+      </div>
+    </div>
+
+  </div> <!-- fin contenido -->
+
 
     <!-- Footer -->
     <footer>
