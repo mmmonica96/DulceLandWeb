@@ -99,13 +99,6 @@ button {
 button:hover {
   background-color: #f07c6d;
 }
-/* Footer */
-footer {
-  width: 100%;
-  text-align: center;
-  padding: 4px 10px;
-  background-color: #d3cce3;
-}
 
 /*responsive */
 @media (max-width: 768px) {
