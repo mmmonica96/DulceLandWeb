@@ -1,39 +1,27 @@
 <?php
+session_start();
 ob_start();
 include 'db.php';
-$conn = new mysqli("localhost", "root", "", "dulceland");
 
-<<<<<<< HEAD
-// Verify connection
-=======
->>>>>>> origin/monica
+// Conexión a la base de datos
+$conn = new mysqli("localhost", "root", "", "dulceland");
 if ($conn->connect_error) {
-    die();
+    die("Error de conexión: " . $conn->connect_error);
 }
 
-<<<<<<< HEAD
-// Get form data
+// Datos del formulario
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
-=======
->>>>>>> origin/monica
 // LOGIN
 if (isset($_POST['login'])) {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-
     if (empty($email) || empty($password)) {
-        die("Email and Password are required.");
+        die("Email y contraseña son requeridos.");
     }
 
-    // Debug: Ver qué email y password se están enviando
-    echo "Email enviado: '$email'<br>";
-    echo "Password enviado: '$password'<br>";
-
-    $stmt = $conn->prepare("SELECT idcustomers FROM customers WHERE email = ? AND password = ?");
+    $stmt = $conn->prepare("SELECT idcustomers, name FROM customers WHERE email = ? AND password = ?");
     if (!$stmt) {
-        die("Prepare failed (login): (" . $conn->errno . ") " . $conn->error);
+        die("Error al preparar (login): " . $conn->error);
     }
 
     $stmt->bind_param("ss", $email, $password);
@@ -41,11 +29,15 @@ if (isset($_POST['login'])) {
     $result = $stmt->get_result();
 
     if ($result && $result->num_rows > 0) {
-        echo "Usuario encontrado. Redireccionando...";
+        $row = $result->fetch_assoc();
+        $_SESSION['user_id'] = $row['idcustomers'];
+        $_SESSION['user_name'] = $row['name'];
+        $_SESSION['user_email'] = $email;
+
         header("Location: ../html/init.html");
         exit();
     } else {
-        echo "Usuario NO encontrado.";
+        echo "Usuario o contraseña incorrectos.";
         exit();
     }
 }
@@ -56,36 +48,35 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    if (empty($email) || empty($name) || empty($password)) {
-        die("Name, Email and Password are required.");
+    if (empty($name) || empty($email) || empty($password)) {
+        die("Nombre, Email y Contraseña son obligatorios.");
     }
 
+    // Verificar si el usuario ya existe
     $check = $conn->prepare("SELECT idcustomers FROM customers WHERE email = ?");
-    if (!$check) {
-        die("Prepare failed (register check): (" . $conn->errno . ") " . $conn->error);
-    }
-
     $check->bind_param("s", $email);
     $check->execute();
     $check->store_result();
 
     if ($check->num_rows > 0) {
-        echo "The user is already registered.";
+        echo "El usuario ya está registrado.";
         exit();
     }
 
+    // Insertar nuevo usuario
     $stmt = $conn->prepare("INSERT INTO customers (name, email, password) VALUES (?, ?, ?)");
-    if (!$stmt) {
-        die("Prepare failed (register insert): (" . $conn->errno . ") " . $conn->error);
-    }
-
     $stmt->bind_param("sss", $name, $email, $password);
 
     if ($stmt->execute()) {
+        $userId = $stmt->insert_id;
+        $_SESSION['user_id'] = $userId;
+        $_SESSION['user_name'] = $name;
+        $_SESSION['user_email'] = $email;
+
         header("Location: ../html/init.html");
         exit();
     } else {
-        echo "User not registered. Error: " . $conn->error;
+        echo "Error al registrar usuario: " . $conn->error;
         exit();
     }
 }
@@ -97,31 +88,21 @@ if (isset($_POST['contact'])) {
     $message = $_POST['message'] ?? '';
 
     if (empty($name) || empty($email) || empty($message)) {
-        die("All fields are required for contact.");
+        die("Todos los campos del formulario de contacto son requeridos.");
     }
 
     $stmt = $conn->prepare("INSERT INTO contact (name, email, message) VALUES (?, ?, ?)");
-    if (!$stmt) {
-        die("Prepare failed (contact): (" . $conn->errno . ") " . $conn->error);
-    }
-
     $stmt->bind_param("sss", $name, $email, $message);
 
     if ($stmt->execute()) {
         header("Location: ../html/init.html");
         exit();
     } else {
-        echo "Error sending message: " . $conn->error;
+        echo "Error al enviar mensaje: " . $conn->error;
         exit();
     }
 }
 
-// Close connection
 $conn->close();
-ob_end_flush(); // Flush output buffer
-<<<<<<< HEAD
-
+ob_end_flush();
 ?>
-=======
-?>
->>>>>>> origin/monica
