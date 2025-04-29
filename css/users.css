@@ -99,10 +99,12 @@ button {
 button:hover {
   background-color: #f07c6d;
 }
+/* Footer */
 footer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 0;
+  width: 100%;
+  text-align: center;
+  padding: 4px 10px;
+  background-color: #d3cce3;
 }
 
 /*responsive */
