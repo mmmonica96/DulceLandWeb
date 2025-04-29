@@ -34,11 +34,7 @@ if (isset($_POST['login'])) {
         $_SESSION['user_name'] = $row['name'];
         $_SESSION['user_email'] = $email;
 
-<<<<<<< HEAD
-        header("Location: ../php/init.php");
-=======
-        header("Location: ../html/orders.html");
->>>>>>> origin/monica
+        header("Location: ../php/orders.php");
         exit();
     } else {
         echo "Usuario o contraseña incorrectos.";
@@ -99,11 +95,7 @@ if (isset($_POST['contact'])) {
     $stmt->bind_param("sss", $name, $email, $message);
 
     if ($stmt->execute()) {
-<<<<<<< HEAD
-        header("Location: ../php/init.php");
-=======
-        header("Location: ../html/orders.html");
->>>>>>> origin/monica
+        header("Location: ../php/orders.php");
         exit();
     } else {
         echo "Error al enviar mensaje: " . $conn->error;
