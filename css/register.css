@@ -99,30 +99,32 @@ body {
   
   /* Footer */
   footer {
-    background-color: #d3c8df;
-    padding: 15px;
-    text-align: center;
-    font-size: 14px;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .rrss {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #d3cce3;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    margin-top: auto;
+  }
+  .main-content {
+    flex: 1;
+  }
+  .rrss a {
+    text-decoration: none;
+    color: #333;
   }
   
-  .rrss a {
-    color: #333;
+  .rrss i {
     font-size: 20px;
-    text-decoration: none;
+    margin-left: 8px;
     transition: opacity 0.3s ease;
   }
   
-  .rrss a:hover {
+  .rrss a:hover i {
     opacity: 0.6;
   }
   

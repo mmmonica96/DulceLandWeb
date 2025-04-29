@@ -206,15 +206,33 @@ body.dark-mode .cart-item button {
 
 /* Footer */
 footer {
-  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #d3cce3;
+  color: #333;
+  font-size: 14px;
   text-align: center;
-  background-color: #d7b6db;
-  padding: 1rem;
+  margin-top: auto;
+}
+.main-content {
+  flex: 1;
+}
+.rrss a {
+  text-decoration: none;
+  color: #333;
 }
 
-footer .rrss a {
-  margin: 0 10px;
-  color: black;
+.rrss i {
+  font-size: 20px;
+  margin-left: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.rrss a:hover i {
+  opacity: 0.6;
 }
 
 /* Fondo general oscuro excepto navbar, footer y banner */
